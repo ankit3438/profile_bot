@@ -26,4 +26,4 @@ jobs:
         env:
           NAUKRI_USER: ${{ secrets.NAUKRI_USER }}
           NAUKRI_PASS: ${{ secrets.NAUKRI_PASS }}
-        run: python code.py
+        run: python naukri.py
