@@ -1,0 +1,29 @@
+name: Update Naukri Profile
+
+on:
+  schedule:
+    # Runs every 12 hours
+    - cron: "0 */12 * * *"
+  workflow_dispatch:  # allows manual trigger
+
+jobs:
+  update-profile:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Run Naukri profile update
+        env:
+          NAUKRI_USER: ${{ secrets.NAUKRI_USER }}
+          NAUKRI_PASS: ${{ secrets.NAUKRI_PASS }}
+        run: python code.py
